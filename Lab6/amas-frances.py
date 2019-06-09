@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
+from matplotlib import pyplot as plt
+
 import sounddevice as sd
-from scipy.io import wavfile
+from scipy.io import wavfile # as wavf
 import numpy as np
+
 
 
 def repetidor(l,s):
@@ -11,38 +13,30 @@ def repetidor(l,s):
     return c
         
 fs, a = wavfile.read('a.wav')
-fs, s = wavfile.read('s.wav')
 fs, m = wavfile.read('m.wav')
-fs, o = wavfile.read('o.wav')
+fs, s1 = wavfile.read('s1.wav')
 
-a_real = o[4052:6304] 
-
-#repeticion
-
-rep_a = repetidor(a_real,1)
-rep_m = repetidor(m,1)
-
-for n in range(len(rep_m)):
-    rep_m[n-1] = (rep_m[n-1]-n//2) //2
-
+a1=s1[35700:37000]
+am=s1[40000:42000]
+m=s1[43700:44000]
+as1=s1[44000:66000]
+s=s1[70000:77000]
 
 #concatenacion
-am = np.append(rep_a,m)
-amm = np.append(am,m)
-amma = np.append(amm,rep_a) 
-ammas = np.append(amma,s) 
-ammass = np.append(ammas,s) 
+#todo se fue a la B
+aam = np.append(a1,am)
 
-#por si se va a la b
+amass=np.append(aam,as1)
+amas=np.append(amass,s)
 
-jijiam = np.append(rep_a,rep_m)
-jijiamm = np.append(jijiam,rep_m)
-jijiamma = np.append(jijiamm,rep_a) 
-jijiammas = np.append(jijiamma,s) 
-jijiammass = np.append(jijiammas,s) 
 
-#sd.play(ammas, fs)
+#sd.play(hola, fs)
 
-sd.play(jijiammas,fs)
+
+wavf.write('ama.wav', 90000,amas)
+
+plt.plot(s1)
+plt.show()
+
 
 
