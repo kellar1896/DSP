@@ -22,6 +22,8 @@ a_real = o[4052:6304]
 rep_a = repetidor(a_real,1)
 rep_m = repetidor(m,1)
 
+for n in range(len(rep_m)):
+    rep_m[n-1] = (rep_m[n-1]-n//2) //2
 
 
 #concatenacion
@@ -39,7 +41,7 @@ jijiamma = np.append(jijiamm,rep_a)
 jijiammas = np.append(jijiamma,s) 
 jijiammass = np.append(jijiammas,s) 
 
-sd.play(ammas, fs)
+#sd.play(ammas, fs)
 
 sd.play(jijiammas,fs)
 
